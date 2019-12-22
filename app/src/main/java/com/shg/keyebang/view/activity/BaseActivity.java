@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.shg.keyebang.aatools.DisplayAdapter;
+import com.shg.keyebang.aatools.DisplayUtil;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,13 +17,15 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        DisplayAdapter.setCustomDensity(this, getApplication());
+        DisplayUtil.setCustomDensity(this, getApplication());
     }
 
     public void toastAndLog(String message){
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         Log.d(TAG, message);
     }
+
+    public abstract void showErrorMessage(String errMsg);
 
     protected void startActivityDirectly(Class<?> cls){
         Intent intent = new Intent(this, cls);
